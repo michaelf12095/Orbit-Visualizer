@@ -8,7 +8,7 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../src'))
+sys.path.insert(0, os.path.abspath('../src'))
 
 project = 'Orbit Visualizer'
 copyright = '2026, Michael Ferrigno'
