@@ -11,13 +11,26 @@ pi = np.pi
 step = 3600
 theta = np.linspace(0,2*pi, step)
 
-# Possible improvements?
-# Allow for input of any datetime
 
 class orbits:
 
     def __init__(planet, a, e, inc, node, arg, col, name):
+        """
+        Create the celestial body object.
 
+        Args:
+            planet (object): self
+            a (float): Semi-major Axis of the object's orbit in AU
+            e (float): Eccentricity of the object's orbit
+            inc (float): Orbital inclination of the object's orbital plane (degrees)
+            node (float): Longitude of ascending node of the object (degrees)
+            arg (float): Argument of periapsis of the object (degrees)
+            col (string): Color to use for the object's orbit within the visualizer. Uses matplotlib.pyplot's colors.
+            name (string): Inputted name for the object in question
+        """
+
+
+        
         planet.a = a
         planet.e = e
         planet.inc = inc
@@ -29,7 +42,13 @@ class orbits:
 
 
     def orbvis(planet, plot=True):
+        """
+        Generate the visualizer.
 
+        Args:
+            planet (object): Orbits class object. The celestial body you wish to visualize.
+            plot (bool): Whether or not to actually create the plot. Default is True.
+        """
         inc = np.radians(planet.inc)
         node = np.radians(planet.node)
         arg = np.radians(planet.arg)
@@ -102,7 +121,7 @@ class orbits:
 
 
 
-    def realtimeplot(planet, Tyears, JD, ToP): # orbital period in years, Julian Date of desired time, Time of (preferrably most recent) Periapsis
+    def realtimeplot(planet, Tyears, JD, ToP): # orbital period in years, Julian Date of desired time, Time of (preferably most recent) Periapsis
         diff = abs(JD - ToP)
         Tdays = Tyears * 365.25
         percent = diff/Tdays
@@ -124,7 +143,7 @@ class orbits:
             pos = int(pos)
             ax.plot(planet.xs[pos],planet.ys[pos],planet.zs[pos],color=planet.col,marker='.')
       
-    def realtimevector(planet, Tyears, JD, ToP): # orbital period in years, Julian Date of desired time, Time of (preferrably most recent) Periapsis
+    def realtimevector(planet, Tyears, JD, ToP): # orbital period in years, Julian Date of desired time, Time of (preferably most recent) Periapsis
         planet.orbvis(plot=False)
         diff = abs(JD - ToP)
         Tdays = Tyears * 365.25
